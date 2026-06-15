@@ -14,8 +14,8 @@ def perturb_GDI_planar(cfg: dict[str, T.Any], xg: dict[str, T.Any]):
     """
 
     # %% READ IN THE SIMULATION INFORMATION
-    # trim ghost cells
-    x1 = xg["x1"][2:-2]
+    ## trim ghost cells
+    #x1 = xg["x1"][2:-2]
     x2 = xg["x2"][2:-2]
 
     # %% LOAD THE FRAME OF THE SIMULATION THAT WE WANT TO PERTURB
@@ -35,15 +35,15 @@ def perturb_GDI_planar(cfg: dict[str, T.Any], xg: dict[str, T.Any]):
     nsscale = np.copy(nsscale)
 
     # %% SCALE EQ PROFILES UP TO SENSIBLE BACKGROUND CONDITIONS
-    scalefact = 10
+    scalefact = 2
     nsscale = scalefact * nsscale
     nsscale[-1, :, :, :] = nsscale[:-1, :, :, :].sum(axis=0)
 
     # %% GDI EXAMPLE (PERIODIC) INITIAL DENSITY STRUCTURE AND SEEDING
     ell = 5e3         # gradient scale length for patch/blob
-    x21 = -20e3       # location on one of the patch edges
-    x22 = -5e3       # other patch edge
-    nepatchfact = 5   # density increase factor over background
+    x21 = -655e3       # location on one of the patch edges
+    x22 = -555e3       # other patch edge
+    nepatchfact = 3   # density increase factor over background
     # Add patch to background
     expanded_x2 = np.expand_dims(x2, axis=(0,1,3))
     nsperturb = nsscale + nepatchfact * nsscale * (1 / 2 * np.tanh((expanded_x2 - x21) / ell) - 1 / 2 * np.tanh((expanded_x2 - x22) / ell))

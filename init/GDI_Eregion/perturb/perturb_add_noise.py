@@ -24,7 +24,7 @@ def perturb_add_noise(cfg: dict[str, T.Any], xg: dict[str, T.Any]):
     lsp = ns.shape[0]
 
     # Add noise
-    percent_noise = 0.05
+    percent_noise = 0.01
     nsperturb = np.copy(ns)
     amplitude = percent_noise * np.random.standard_normal(nsperturb.shape)
     # do not apply noise near the edge (corrupts boundary conditions)

@@ -10,11 +10,11 @@ import gemini3d.read
 import matplotlib.pyplot as plt
 import numpy as np
 
-outdir="~/simulations/sdcard/GDI_round/"
+outdir="~/GEMINI/simulations2/"
 
 cfg=gemini3d.read.config(outdir)
 xg=gemini3d.read.grid(outdir)
-dat=gemini3d.read.frame(outdir,time=cfg["time"][-1])     # e.g., reads frame 20
+dat=gemini3d.read.frame(outdir,time=cfg["time"][19])     # e.g., reads frame 20
 
 x=xg["x2"][2:-2]    # remove ghost cells for convenience
 y=xg["x3"][2:-2]
@@ -29,3 +29,4 @@ plt.ylabel("y dist. (km)")
 plt.colorbar()
 #plt.ylabel(cb,"$n_e (m^{-3})$")
 plt.title("Sample GDI output Frame")
+plt.savefig('test_fig.png')

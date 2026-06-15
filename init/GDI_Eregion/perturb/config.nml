@@ -2,7 +2,7 @@
 
 &base
 ymd = 2020,1,2               ! year, month, day
-UTsec0 = 18000.0              ! start time in UT seconds
+UTsec0 = 18600.0              ! start time in UT seconds
 tdur = 1800.0                  ! duration of simulation in seconds
 dtout = 60.0                  ! how often to do file output
 activ = 150.0,150.0,50.0      ! f107a,f107,Ap
@@ -13,18 +13,18 @@ Teinf = 1500.0                ! exospheric electron temperature
 &setup
 glat = 74.72955
 glon = 265.09424
-xdist = 3.e5             ! eastward distance (meters), including a large low-res buffer for solvers
-ydist = 96.e3             ! northward distance (meters), make sure ydist/lyp is similar resolution to what's used in x direction
+xdist = 1510.e3             ! eastward distance (meters), including a large low-res buffer for solvers
+ydist = 128.e3             ! northward distance (meters), make sure ydist/lyp is similar resolution to what's used in x direction
 lxp = 384
-lyp = 96		! Make a multiple of number of processers (ie, 192)
+lyp = 128		! Make a multiple of number of processers (ie, 192)
 x2parms = 50e3,1.e3,9.5e3,10e3
 Bincl = 90
 alt_min = 80e3
 alt_max = 975e3
 alt_scale = 50e3, 45e3, 400e3, 150e3 ! super coarse along the field line
-Eyit = -50e-3
+Eyit = -30e-3
 
-eq_dir = '~/GEMINI/E_short/GDI_reference_stage'	! point to equilibrium simulation
+eq_dir = '~/GEMINI/E_short/GDI_reference/staging'	! point to staging simulation
 
 setup_functions = 'E_short.perturb_add_noise', 'gemini3d.efield.Efield_BCs'
 /
@@ -46,22 +46,22 @@ dtE0 = 30.0
 E0_dir = 'inputs/Efield/'
 /
 
+&precip_BG
+PhiWBG=1e-6    ! total energy flux, mW/m2
+W0BG=1e3       ! characteristic energy
+/
+
+! Not useful for this application and saves time to turn this off
 &Jpar
 flagJpar=.false.
 /
 
-&precip_BG
-PhiWBG=1e-6    ! total energy flux, mW/m2
-W0BG=1e3       ! characteristic energy
-! PhiWBG=0.05    !good for illustrating effects of precip -> damping
-! PhiWBG=1e-3
-/
-
-&capacitance
-flagcap=0       !use inertial capacitance? 0 - set all to zero, 1 - use ionosphere to compute, 2 - add a magnetospheric part
-magcap=0.0
-! magcap=5.0    !good for showing damping due to magnetosphere...
-/
+!! May be necessary to turn this on if grid resolution < 1 km
+!&capacitance
+!flagcap=0       !use inertial capacitance? 0 - set all to zero, 1 - use ionosphere to compute, 2 - add a magnetospheric part
+!magcap=0.0
+!! magcap=5.0    !good for showing damping due to magnetosphere...
+!/
 
 &milestone
 mcadence=4

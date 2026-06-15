@@ -58,6 +58,15 @@ git clone https://github.com/gemini3d/pygemini
 pip install -e ./pygemini
 ```
 
+## Three-phase simulation
+This simulation must be run in three steps:
+- Eqilibrium - estabilish background and stable E-region
+- Staging - add patch
+- Perturbation - add noise
+
+To generate different E-region conductivities, change E0 and Q in the configuration files and re-run all three simuations.
+
+
 ## Creating input data for simulation
 
 Initial conditions for these simulations for a specific grid size, etc., are created from existing, low-resolution "equilibrium" simulations.
