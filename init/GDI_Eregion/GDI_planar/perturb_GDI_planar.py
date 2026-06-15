@@ -10,7 +10,7 @@ import gemini3d.write
 
 def perturb_GDI_planar(cfg: dict[str, T.Any], xg: dict[str, T.Any]):
     """
-    perturb plasma from initial_conditions file
+    Add a tubular cyclic patch to the equilibrium background
     """
 
     # %% READ IN THE SIMULATION INFORMATION

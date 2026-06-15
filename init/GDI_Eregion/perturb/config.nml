@@ -24,9 +24,9 @@ alt_max = 975e3
 alt_scale = 50e3, 45e3, 400e3, 150e3 ! super coarse along the field line
 Eyit = -30e-3
 
-eq_dir = '~/GEMINI/E_short/GDI_reference/staging'	! point to staging simulation
+eq_dir = '../GDI_planar'	! point to equilibrium simulation
 
-setup_functions = 'E_short.perturb_add_noise', 'gemini3d.efield.Efield_BCs'
+setup_functions = 'perturb_add_noise', 'gemini3d.efield.Efield_BCs'
 /
 
 &flags
